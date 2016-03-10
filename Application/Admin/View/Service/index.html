@@ -1,0 +1,56 @@
+<extend name="Public/base"/>
+
+<!-- 子导航 -->
+<block name="sidebar">
+    <include file="Public/sidemenu" />
+</block>
+
+<block name="body">
+    <div style="border-bottom:none;margin-left: 240px;margin-top: 20px;">
+        <form action="{:U('add')}" method="post">
+            <volist name="fields" id="field" offset="1" >
+               <span style="vertical-align: top;"> {$field}:</span><input type="text"  name="{$key}" >&nbsp;&nbsp;&nbsp;
+            </volist>
+            <br>
+            <input type="hidden" name="roleId" value="{$roleId}">
+            <input type="submit" style="margin-left: 0px; margin-top: 5px;" value="新增">
+        </form>
+
+    </div>
+	<div style="border-bottom:none;margin-left: 240px;margin-top: 10px;">
+        <table>
+            <tr>
+                <volist name="fields" id="field">
+                    <td>{$field}</td>
+                </volist>
+                <td>操作</td>
+            </tr>
+            <volist name="list" id="item">
+                <tr>
+                    <volist name="fields" id="field">
+                        <td>{$item[$key]}</td>
+                    </volist>
+                    <td>
+                    <a href="{:U('del')}?id={$item['id']}&roleId={$roleId}">删除
+                    </a>|
+                    <a href="{:U('edit')}?id={$item['id']}&roleId={$roleId}">编辑
+                    </a>
+                    </td>
+                </tr>
+            </volist>
+        </table>
+
+	</div>
+
+</div>
+</block>
+
+<block name="script">
+<link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+$(function(){
+	//搜索功能
+	
+});
+</script>
+</block>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div style="padding:20px;align:0 auto;">
+		<pre>
+				承保公司：{$detail['company']}<br>
+				折后总价:{$detail['allPriceDis']}<br>
+				车辆信息：<br><br><br><br>
+				
+				
+				-------------<br>
+				报价明细:<br>
+		</pre>
+		<div style="padding-left:200px;">
+		<table>
+				<volist name='detail["cateList"]' id='com'>
+			<tr style="width:500px;"><td>{$com['name']}</td> <td> {$com['level']}</td>
+			    <td> <del>{$com['price']}</del></td> <td> {$com['disPrice']}</td> 
+    		</tr>
+    
+	    		<if condition="$com['noPayPrice'] neq 0">
+		    		<tr style="width:500px;"><td>{$com['name']}不计免赔部分</td> <td>  </td>
+					    <td> <del>{$com['noPayPrice']}</del></td> <td> {$com['disNoPayPrice']}</td> 
+		    		</tr>
+	    		</if>
+				</volist>
+		
+		</table>
+
+		
+		</div>
+
+		<pre>
+				------------------------------------<br>
+						                    商业险总计:{$detail['catePriceDis']}<br>
+				---------------------------------------	<br>					
+				交强险:{$detail['jq_price']}<br>
+				车船税:{$detail['cc_price']}<br>
+				---------------------------------------------------<br>
+						              投保费用总计:{$detail['allPriceDis']}<br>
+						             
+						             
+						<a href='{:U("userred/share")}'>分享砍价</a>
+		</pre>
+
+</div>
+</body>
+</html>

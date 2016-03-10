@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>选择保险套餐</title>
+<link href="111__PUBLIC__/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="__PUBLIC__/static/nn/css/nn.css" rel="stylesheet">
+<script type="text/javascript">
+function check()
+{
+document.getElementById("bx").checked=true;
+}
+check();
+</script>
+</head>
+<body>
+<div style="margin:0 auto;">
+<form>
+	<ul>
+	<li>
+		<input id="bx" name="jqx" type="checkbox" value="111" checked="checked" /> 交强险+车船险（必选）
+	</li>
+	<li>
+		<input name="dszzrx" type="checkbox" value="" checked="checked" /> 第三者责任险  
+		<div class="fr"><input name="dszzrx" type="checkbox" value="不计免赔" checked="checked" />不计免赔</div>
+		<select class="fr" style="margin-right:15px;"    name="dsfzr"   data-valid="isNonEmpty" data-error="选择保额">
+        <option value="">请选择</option>
+        <option value="1">5万</option>
+        <option value="2">10万</option>   
+        <option value="3">15万</option>   
+        <option value="4">20万</option>
+        <option value="5">30万</option>
+        <option value="6">50万</option>
+        <option value="7" >100万</option>
+        <option value="8" selected = "selected">150万</option>
+        <option value="9">200万</option>
+     	</select>
+		
+	</li>
+	<li>
+		<input name="dszzrx" type="checkbox" value="" checked="checked" /> 车辆损失险
+		<div class="fr"><input name="dszzrx" type="checkbox" value="" checked="checked" />不计免赔</div>
+	</li>
+	<li>
+		<input name="dszzrx" type="checkbox" value="" checked="checked" /> 全车盗抢险
+		<div class="fr"><input name="dszzrx" type="checkbox" value="" checked="checked" />不计免赔</div>
+	</li>
+	<li>
+		<input name="dszzrx" type="checkbox" value="" /> 司机乘坐责任险
+		<div class="fr"><input name="dszzrx" type="checkbox" value="" />不计免赔</div>
+		<select class="fr" style="margin-right:15px;"  name="sjczzr"  data-valid="isNonEmpty" data-error="选择保额">
+        <option value="">请选择</option>
+        <option value="1">5万</option>
+        <option value="2">10万</option>   
+        <option value="3">15万</option>   
+        <option value="4" selected = "selected">20万</option>
+       	</select>
+	</li>
+		<li>
+		<input name="dszzrx" type="checkbox" value="" /> 乘客座位责任险
+		<div class="fr"><input name="dszzrx" type="checkbox" value="" />不计免赔</div>
+	</li>
+	<li>
+		<input name="dszzrx" type="checkbox" value="" /> 玻璃单独破碎险
+		<div class="fr"><input name="dszzrx" type="checkbox" value="" />不计免赔</div>
+		<select class="fr" style="margin-right:15px;"   name="bl" data-valid="isNonEmpty" data-error="选择保额">
+        <option value="">请选择</option>
+        <option value="1" selected = "selected">国产玻璃</option>
+        <option value="2" >进口玻璃</option>
+     	</select>
+	</li>
+	<li>
+		<input name="dszzrx" type="checkbox" value="" /> 涉水险
+		<div class="fr"><input name="dszzrx" type="checkbox" value="" />不计免赔</div>
+	</li>
+	<li>
+		<input name="dszzrx" type="checkbox" value="" /> 车身划痕险
+		<div class="fr"><input name="dszzrx" type="checkbox" value="" />不计免赔</div>
+		<select class="fr" style="margin-right:15px;"   name="hh" data-valid="isNonEmpty" data-error="选择保额">
+        <option value="">请选择</option>
+        <option value="1">2000</option>
+        <option value="2" selected = "selected">5000</option>
+        <option value="3" >10000</option>
+        <option value="4">20000</option>
+     	</select>
+	</li>
+	<li>
+		<input name="dszzrx" type="checkbox" value="" /> 自然损失险
+	</li>
+	<li style="text-align: center;">
+		<input type="submit" value="计算">
+	</li>
+	</ul>
+</form>
+</div>
+
+
+
+
+<hr style="margin-top:50px;"/>
+<form>
+    <div class="form_control">
+      <input class="required" value="315359131@qq.com" type="text" name="email" data-tip="请输入您的邮箱" data-valid="isNonEmpty||isEmail" data-error="email不能为空||邮箱格式不正确">
+    </div>
+    <div class="form_control">
+      <input class="required" value="123456789" type="password" data-tip="请输入您的密码" data-valid="isNonEmpty||between:6-16" data-error="密码不能为空||密码长度6-16位" name="nickname">
+    </div>
+    <div class="form_control">
+      <input class="required" value="王大锤" type="text" name="email" data-tip="请输入您的姓名" data-valid="isNonEmpty||onlyZh||between:2-5" data-error="姓名不能为空||姓名只能为中文||姓名长度为2-5位">
+    </div>
+    <div class="form_control">
+      <span class="required" data-valid="isChecked" data-error="性别必选" data-type="radio">
+          <label><input type="radio" name="sex">男</label>
+          <label><input type="radio" name="sex">女</label>
+          <label><input type="radio" name="sex">未知</label>
+      </span>
+    </div>
+    <div class="form_control">
+      <span class="required" data-valid="isChecked" data-error="标签至少选择一项" data-type="checkbox">
+          <label><input type="checkbox" name="label">红</label>
+          <label><input type="checkbox" name="label">绿</label>
+          <label><input type="checkbox" name="label">蓝</label>
+      </span>
+    </div>
+    <div class="form_control">
+      <select class="required" data-valid="isNonEmpty" data-error="省份必填">
+        <option value="">请选择省份</option>
+        <option value="001">001</option>
+        <option value="002">002</option>
+        <option value="003">003</option>
+        <option value="004">004</option>
+        <option value="005">005</option>
+        <option value="006">006</option>
+        <option value="007">007</option>
+        <option value="008">008</option>
+        <option value="009">009</option>
+        <option value="010">010</option>
+      </select>
+    </div>
+    <div>
+      <input type="submit" value="提交">
+    </div>
+  </form>
+
+</body>
+</html>

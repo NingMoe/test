@@ -1,0 +1,970 @@
+<html>
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/Admin/bootstrap/css/bootstrap-responsive.css" />
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/Admin/bootstrap/css/bootstrap.css" />
+        <link href="111__PUBLIC__/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="__PUBLIC__/static/Admin/js/jquery-1.8.2.min.js"></script>
+        <script src="__PUBLIC__/static/Admin/bootstrap/js/bootstrap.js"></script>
+        <script src="__PUBLIC__/static/Admin/js/linkagesel-min.js"></script>
+   
+        <script type="text/javascript">
+        function check()
+        {
+        document.getElementById("bx").checked=true;
+        }
+        check();
+        </script>
+       </head>
+    <style>
+        ul li{list-style:none;}
+        #zuo{
+                width:48%;
+                height:800px;
+                border:1px solid gray;
+                float:left;
+                margin-left:10px;
+                margin-top:40px;
+        }
+        #you{
+                width:50%;
+                height:800px;
+                border:1px solid gray;
+                background-color:white;
+                float:left;
+                margin-top:40px;
+        }
+
+        #main li{
+          margin-top:20px;
+        }
+
+        #main_2 li{
+          margin-top:20px;
+        }
+
+      .subNav{
+        height:50px;
+        cursor:pointer;
+        font-size:14px;
+        color:black;
+        line-height:50px;
+          text-align: center;
+          margin-top:-100px;
+      }
+
+      .navContent li a{
+        display:block;
+        text-align:right;
+        font-size:14px;
+        color:black;
+
+      }
+       
+      table.formdata{          
+          border:1px solid #5F6F7E; 
+          border-collapse:collapse; 
+          font-family:Arial; 
+      } 
+      table.formdata caption{       /*标题*/ 
+          text-align:left; 
+          padding-bottom:6px; 
+      } 
+      table.formdata th{           /*行列标题*/ 
+          border:1px solid #5F6F7E; 
+          background-color:#E2E2E2; 
+          color:#000000; 
+          font-weight:normal; 
+          margin:0px; 
+      } 
+      table.formdata td{         /*表格行*/ 
+          border:1px solid #ABABAB;   /* 单元格边框 */ 
+      } 
+      table.formdata input{          /*可输入区域样式*/ 
+          width:100px;  
+          padding:1px 3px 1px 3px; 
+          margin:0px; 
+          border:none;                /* 输入框不要边框 */ 
+          font-family:Arial; 
+      } 
+            
+     
+    </style>
+	
+	<style type="text/css">
+//* { padding: 0; margin: 0; }
+//li { list-style: none; }
+#parent { width: 600px; margin: 0 auto; }
+h4 { line-height: 40px; margin-bottom: 10px; border-bottom: 1px solid #333; color:#FF3300 }
+p { width: 100%; background: #f1f1f1; position: relative; margin-bottom: 25px; }
+#box { width: 580px; padding: 25px 10px 0; border: 1px solid #ddd; margin-bottom: 10px; }
+span { position: absolute; top: -20px; right: 0px; }
+em { position: relative; top: -13px; }
+#text { width: 100%; height: 90px; overflow: auto; }
+#btn { width: 20%; height: 50px; }
+</style>
+
+<script type="text/javascript">
+
+
+
+
+
+//i=1;
+function fnsubmit()
+{
+var odiv=document.getElementById("box");
+//var oem=odiv.getElementsByTagName("em")[0];
+var otext=document.getElementById("text");
+var oli=odiv.getElementsByTagName("li");
+var add_li=document.createElement("li");
+var o_span=document.createElement("span");
+if(otext.value=="")
+{
+alert("请填写留言内容！");
+return;
+}
+
+
+sendmsg(otext.value,function(result){
+
+
+console.log(result);
+});
+
+//oem.style.display="none";
+o_span.style.position="absolute";
+o_span.style.top="-20px";
+o_span.style.right="20px";
+o_span.style.background="#cccccc";
+add_li.style.position="relative";
+add_li.index=i;
+add_li.style.background="#cccccc";
+add_li.style.marginBottom="20px";
+var str=document.createTextNode(i+"、"+otext.value);
+var strspan=document.createTextNode("确定删除"+i+"、"+otext.value+"内容？");
+add_li.appendChild(o_span);
+o_span.style.display="none";
+o_span.appendChild(strspan);
+add_li.appendChild(str);
+odiv.appendChild(add_li);
+i++;
+
+odiv.scrollTop=odiv.scrollHeight;
+/*for(j=0;j<oli.length;j++)
+  {
+    var m=j;
+   oli[j].onmouseover=function()
+  {
+  this.style.background="#ffff00";
+  (this.childNodes(o_span)).style.display="block";
+  };
+  oli[j].onmouseout=function()
+  {
+  this.style.background="#cccccc";
+  (this.childNodes(o_span)).style.display="none";
+  };
+  oli[j].onclick=function()
+  {
+  m--;
+    odiv.removeChild(this); 
+  if(m<0)
+  {
+  oem.style.display="block";
+  };
+  };
+  };*/
+}
+</script>
+
+<script type="text/javascript">
+
+
+ 
+function clearmsg(){
+var carid = document.getElementById('carid').value;		
+
+			var str="carid="+carid;
+									 var xhr = new XMLHttpRequest();
+        xhr.open("POST", "{:U('remark/emptyRemark')}", true);
+       // xhr.setRequestHeader("Content-type", "application/json");
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+        xhr.send(str);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+            	
+				  // serverdiv.innerHTML='您有'+'<span style="color:red;font-size:1em">'+JSON.parse(xhr.responseText).num+'</span>'+'个报价待处理';
+						console.log(xhr.responseText);			 
+			JSON.parse(xhr.responseText);
+              var  wep=JSON.parse(xhr.responseText).remarks;
+			 //console.log(JSON.stringify(wep));
+			  // console.log(wep.length);
+			  document.getElementById("box").innerHTML= "";
+			  i=1;
+			//stringArr= wep.split(",");
+			 // console.log(stringArr);
+            }
+        }
+
+
+
+
+}
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ function   sendmsg(msg,call){
+				  var carid = document.getElementById('carid').value;		
+				if (msg==''){
+				
+				var str="carid="+carid;
+				
+				
+				}else{
+				var str="carid="+carid+"&remarkContent="+msg;
+				
+				}
+							
+                         	
+                 //   console.log(carid);						   
+							//var carid="{$info['id']}";		  
+					//var str="carid="+carid;
+									 var xhr = new XMLHttpRequest();
+        xhr.open("POST", "{:U('remark/saveRemark')}", true);
+       // xhr.setRequestHeader("Content-type", "application/json");
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+        xhr.send(str);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+            	
+				  // serverdiv.innerHTML='您有'+'<span style="color:red;font-size:1em">'+JSON.parse(xhr.responseText).num+'</span>'+'个报价待处理';
+						//console.log(xhr.responseText);			 
+			JSON.parse(xhr.responseText);
+              var  wep=JSON.parse(xhr.responseText).remarks;
+			 //console.log(JSON.stringify(wep));
+			  // console.log(wep.length);
+			  
+			   call(wep); 
+			//stringArr= wep.split(",");
+			 // console.log(stringArr);
+            }
+        }
+
+                        
+						
+							   
+							   
+							   
+							   }
+ 
+ 
+ 
+ 
+ 
+  </script> 
+    <script type="text/javascript">
+        $(function() {
+        $(".subNav").click(function() {
+        $(this).toggleClass("currentDd").siblings(".subNav").removeClass("currentDd");
+        $(this).toggleClass("currentDt").siblings(".subNav").removeClass("currentDt");
+        $(this).next(".navContent").slideToggle(300).siblings(".navContent").slideUp(500);
+                })
+            })
+    </script>
+
+    <body>
+
+      <div id="zuo">
+        <div id="myCarousel" class="carousel slide" style="float:left;margin-top:120px;margin-left:10px;">
+
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+      <!-- Carousel items -->
+         <div class="carousel-inner">
+
+          <volist name='fourImg' id='img'>
+          <if condition='$img neq ""'>
+          	<if condition='$key eq 0'>
+          	<div class="active item">
+          	<else />
+          	<div class="item">
+          	</if>
+          	<img style="width:630px;height:400px;" alt="" src="/{$img}"></div>
+          </if>
+          </volist>         
+          </div>
+      <!-- Carousel nav -->
+          <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+          <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+        </div>
+    </div>
+    </div>
+
+    <div id="you">
+        <div style="margin-top:20px;">
+              <a href="{:U('Driving/index')}"><img style="float:right;margin-top:20px;margin-right:60px;" src="__PUBLIC__/static/Admin/img/an.png"></a>
+              <a style="width:80px;border:1px solid #05A7CB;background:#05A7CB;border-radius:5px;font-size:18px;color:white;float:left;margin-left:20px;margin-top:20px;text-align:center;padding:12px;" href="#" id="user" onclick="orders()">报价信息</a>
+              <a style="width:120px;border:1px solid #05A7CB;background:#05A7CB;border-radius:5px;font-size:18px;color:white;float:left;margin-left:20px;margin-top:20px;text-align:center;padding:12px;" href="#" id="order" onclick="users()">用户车辆信息</a>
+              <a style="width:80px;border:1px solid #05A7CB;background:#05A7CB;border-radius:5px;font-size:18px;color:white;float:left;margin-left:20px;margin-top:20px;text-align:center;padding:12px;" href="#" id="order" onclick="ord()">订单</a>
+               <a style="width:80px;border:1px solid #05A7CB;background:#05A7CB;border-radius:5px;font-size:18px;color:white;float:left;margin-left:20px;margin-top:20px;text-align:center;padding:12px;" href="#" id="taocan" onclick="taocan()">套餐</a>
+              <script type="text/javascript">
+              function orders(){
+              $('#main').show();
+              // $('#main_1').hide();
+              // $('#main_2').hide();
+              $('#main_1').css('display','none');
+              $('#main_2').css('display','none');
+              $('#main_3').css('display','none');
+
+               }
+              function users(){
+              $('#main').hide();
+              $('#main_1').show();
+              $('#main_2').hide();
+              $('#main_3').hide();
+              sendmsg('',function(result){
+
+              document.getElementById("box").innerHTML= "";
+			  i=1;
+			  
+			for (j=0;j<result.length;j++){
+			  var odiv=document.getElementById("box");
+//var oem=odiv.getElementsByTagName("em")[0];
+var otext=result[j];
+var oli=odiv.getElementsByTagName("li");
+var add_li=document.createElement("li");
+var o_span=document.createElement("span");
+
+
+
+
+
+//oem.style.display="none";
+o_span.style.position="absolute";
+o_span.style.top="-20px";
+o_span.style.right="20px";
+o_span.style.background="#cccccc";
+add_li.style.position="relative";
+add_li.index=i;
+add_li.style.background="#cccccc";
+add_li.style.marginBottom="20px";
+var str=document.createTextNode(i+"、"+otext);
+var strspan=document.createTextNode("确定删除"+i+"、"+otext.value+"内容？");
+add_li.appendChild(o_span);
+o_span.style.display="none";
+o_span.appendChild(strspan);
+add_li.appendChild(str);
+odiv.appendChild(add_li);
+i++;
+	odiv.scrollTop=odiv.scrollHeight;		  
+			  
+	}		    
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+//console.log(result);
+});
+               }
+              function ord(){
+              $('#main').hide();
+              $('#main_1').hide();
+              $('#main_2').show();
+              $('#main_3').hide();
+
+              }
+               function taocan(){
+              $('#main').hide();
+              $('#main_1').hide();
+              $('#main_2').hide();
+              $('#main_3').show();
+
+              }
+
+              </script>
+      </div>
+                       
+        <div id="main" style="float:left;">
+                    <form class="" name="form" action="{:U('edit')}"  method="post"  role="form"> 
+                    <input type="hidden" name="carid" value="{$info['id']}">
+                    <input type="hidden" name="type" value="1">
+            <ul>
+                <volist name='priceInfoFields' id='field'>
+                    <li>
+                     {$field}：<input style="width:100px;height:30px;" type="text" name="{$key}" value="{$info[$key]}">
+                    </li>
+                </volist>
+           </ul>
+   
+              <table style="float:left; margin-top:-350px;margin-left:280px;" class="formdata"> 
+                    <tr> 
+                    <th scope="col">显示排序</th> 
+                    <th scope="col">保险公司</th> 
+                    <th scope="col">退点折扣</th> 
+                    </tr> 
+                    <volist name='comInfo' id='com'>
+                    	<tr> 
+                        <td><input type="text" name="com_{$com['id']}" value="{$key}"    id="harddisk2004"/></td> 
+                        <td id="harddisk2005">　{$com['name']}</td> 
+                        <td><input type="text" name="rate_{$com['id']}" value="{$com['discount']}" id="harddisk2006"/></td> 
+                    </tr>
+                    </volist>
+
+              </table>   
+                    <ul style="margin-top:-40px;">
+                        <p style="float:left;">车辆类型：</p><div class="col-lg-2 col-lg-offset-2 distpicker1" style="width:600px;margin:50px auto">
+                        <select class="col-lg-2 col-lg-offset-4" name="province" id="province" style="width:110px;"></select>
+                        <select class="col-lg-1 " name="city" id="city" style="width:110px;"></select>
+                        <select class="col-lg-1" name="areacarid" id="area" style="width:110px;"></select>
+                    </div>
+                        <script type="text/javascript" src="__PUBLIC__/static/Admin/js/distpicker.data.js"></script>
+                        <script type="text/javascript" src="__PUBLIC__/static/Admin/js/distpicker.js"></script>
+
+                        <script type="text/javascript">
+                          $(function () {
+                              $(".distpicker1").distpicker();
+                              autoSelect: false
+                              // $("#province").val('选择省');
+                              // $("#city").val('选择市');
+                              // $("#area").val('选择区');
+                          })
+                      </script>
+                    </ul>
+                     <ul style="margin-top:-40px;" >
+                    <div>出险情况：<select id="topIndex" name="topIndex" ></select><select  id="verticalIndex" name="verticalIndex" ></select><select  id="lineIndex" name="lineIndex" ></select></div>
+                        <script>
+                          $(document).ready(function(){
+                            var data1 = {
+                        0: {name: '连续未出险', 
+                         cell: { 
+                               4: {name: '1年', 
+                         cell: {
+                         0: {name: '0-50%'}, 
+                          1: {name: '50-75%'}, 
+                         2: {name: '75-100%'}, 
+                          3: {name: '100%-'}, 
+                         }                   
+                         }, 
+                           3: {name: '2年',
+                         cell: {
+                         0: {name: '0-50%'}, 
+                          1: {name: '50-75%'}, 
+                         2: {name: '75-100%'}, 
+                          3: {name: '100%-'}, 
+                         } 
+                         },
+                           2: {name: '3年',
+                         cell: {
+                         0: {name: '0-50%'}, 
+                          1: {name: '50-75%'}, 
+                         2: {name: '75-100%'}, 
+                          3: {name: '100%-'}, 
+                         } 
+                         },
+                           1: {name: '4年',
+                         cell: {
+                         0: {name: '0-50%'}, 
+                          1: {name: '50-75%'}, 
+                         2: {name: '75-100%'}, 
+                          3: {name: '100%-'}, 
+                         } 
+                         },
+                           0: {name: '5年',
+                         cell: {
+                         0: {name: '0-50%'}, 
+                          1: {name: '50-75%'}, 
+                         2: {name: '75-100%'}, 
+                          3: {name: '100%-'}, 
+                         } 
+                         }            
+                            }
+                        },
+                        1: {name: '上次有出险', 
+                            cell: { 
+                               0: {name: '1次' ,
+                         cell: {
+                         0: {name: '0-50%'}, 
+                          1: {name: '50-75%'}, 
+                         2: {name: '75-100%'}, 
+                          3: {name: '100%-'}, 
+                         }                 
+                         }, 
+                           1: {name: '2次',
+                         cell: {
+                         0: {name: '0-50%'}, 
+                          1: {name: '50-75%'}, 
+                         2: {name: '75-100%'}, 
+                          3: {name: '100%-'}, 
+                         } 
+                         },
+                           2: {name: '3次',
+                         cell: {
+                         0: {name: '0-50%'}, 
+                          1: {name: '50-75%'}, 
+                         2: {name: '75-100%'}, 
+                          3: {name: '100%-'}, 
+                         } 
+                         },
+                           3: {name: '4次',
+                         cell: {
+                         0: {name: '0-50%'}, 
+                          1: {name: '50-75%'}, 
+                         2: {name: '75-100%'}, 
+                          3: {name: '100%-'}, 
+                         } 
+                         },
+                           4: {name: '5次',
+                         cell: {
+                         0: {name: '0-50%'}, 
+                          1: {name: '50-75%'}, 
+                         2: {name: '75-100%'}, 
+                          3: {name: '100%-'}, 
+                         } 
+                         },
+                             5: {name: '6次',
+                         cell: {
+                         0: {name: '0-50%'}, 
+                          1: {name: '50-75%'}, 
+                         2: {name: '75-100%'}, 
+                          3: {name: '100%-'}, 
+                         } 
+                         },
+
+                              6: {name: '7次',
+                         cell: {
+                         0: {name: '0-50%'}, 
+                          1: {name: '50-75%'}, 
+                         2: {name: '75-100%'}, 
+                          3: {name: '100%-'}, 
+                         } 
+                         },
+                               7: {name: '8次及以上',
+                         cell: {
+                         0: {name: '0-50%'}, 
+                          1: {name: '50-75%'}, 
+                         2: {name: '75-100%'}, 
+                          3: {name: '100%-'}, 
+                         } 
+                         }                      
+                            }
+                        },
+                        2: {name: '新车或异地转入车辆'      
+                        }
+                        };
+                            
+                            var opts = {
+                                data: data1,
+                                select:  [ '#topIndex', '#verticalIndex' ,'#lineIndex']
+                            };
+                            var linkageSel = new LinkageSel(opts);
+                            
+                            //$('#getSelectedValue').click(function() {
+                              //var v = linkageSel.getSelectedValue();
+                              ///alert(v);
+                            //});
+                            
+                            //$('#getSelectedData').click(function() {
+                              //var name = linkageSel.getSelectedData('name'),
+                              //  price = linkageSel.getSelectedData('price');
+                              //alert('名称:' + name + ' 价格:' + price);
+
+                            //});
+                          });
+                          
+                        </script>              
+                  
+                    <button type="submit" name="submit" action="{:U('edit')}" method="post"  style="width:160px; height:30px;border:none; color:white;background:gray;border-radius:5px;margin-left:150px;margin-top:40px;">保存修改</button>
+                      </ul>
+                      </form>
+                      </div>
+                   
+               
+                    <div id="main_1" style="display: none;float:left;">
+                     <form class="" name="form1" action="{:U('edit')}" method="post"  role="form" >
+                     <input type="hidden" name="carid" value="{$info['id']}">
+                    <input type="hidden" name="type" value="2">
+
+                    <ul>
+                      <volist name='carInfoFields' id='field' offset="0" length='6'>
+                          <li>
+                           {$field}：<input style="width:100px;height:30px;" type="text" name="{$key}" value="{$info[$key]}">
+                          </li>
+                      </volist>
+                    </ul>
+                     
+                      
+                    <ul style="float:left;margin-left:300px;margin-top:-250;">  
+                      <volist name='carInfoFields' id='field' offset="6" length='5'>
+                      <li>
+					  {$field}：
+						  <if condition="$key eq 'action_status'">
+								<select name="{$key}" >
+									<volist name='statusFields' id='sf'>
+										<option value="{$key}"  <if condition="$info['action_status'] eq $key">	selected="on" </if>	>
+										{$sf}
+										</option>
+									</volist>
+								</select>
+						  <else/>
+								 <input style="width:100px;height:30px;" type="text" name="{$key}" value="{$info[$key]}">
+						  </if>
+                      
+                      </li>
+                      </volist> 
+                      <li>
+
+                      </li> 
+
+                      </ul>
+                      <ul>
+                      <li>
+                      省　　市：　
+                      　<script language="JavaScript">
+                    var hw_selecttext ="北京|东城^西城^崇文^宣武^朝阳^丰台^石景山^海淀^门头沟^房山^通州^顺义^昌平^大兴^平谷^怀柔^密云^延庆*上海|黄浦^卢湾^徐汇^长宁^静安^普陀^闸北^虹口^杨浦^闵行^宝山^嘉定^浦东^金山^松江^青浦^南汇^奉贤^崇明*天津|和平^东丽^河东^西青^河西^津南^南开^北辰^河北^武清^红挢^塘沽^汉沽^大港^宁河^静海^宝坻^蓟县*重庆|万州^涪陵^渝中^大渡口^江北^沙坪坝^九龙坡^南岸^北碚^万盛^双挢^渝北^巴南^黔江^长寿^綦江^潼南^铜梁^大足^荣昌^壁山^梁平^城口^丰都^垫江^武隆^忠县^开县^云阳^奉节^巫山^巫溪^石柱^秀山^酉阳^彭水^江津^合川^永川^南川*河北|石家庄^邯郸^邢台^保定^张家口^承德^廊坊^唐山^秦皇岛^沧州^衡水*山西|太原^大同^阳泉^长治^晋城^朔州^吕梁^忻州^晋中^临汾^运城*内蒙古|呼和浩特^包头^乌海^赤峰^呼伦贝尔盟^阿拉善盟^哲里木盟^兴安盟^乌兰察布盟^锡林郭勒盟^巴彦淖尔盟^伊克昭盟*辽宁|沈阳^大连^鞍山^抚顺^本溪^丹东^锦州^营口^阜新^辽阳^盘锦^铁岭^朝阳^葫芦岛*吉林|长春^吉林^四平^辽源^通化^白山^松原^白城^延边*黑龙江|哈尔滨^齐齐哈尔^牡丹江^佳木斯^大庆^绥化^鹤岗^鸡西^黑河^双鸭山^伊春^七台河^大兴安岭*江苏|南京^镇江^苏州^南通^扬州^盐城^徐州^连云港^常州^无锡^宿迁^泰州^淮安*浙江|杭州^宁波^温州^嘉兴^湖州^绍兴^金华^衢州^舟山^台州^丽水*安徽|合肥^芜湖^蚌埠^马鞍山^淮北^铜陵^安庆^黄山^滁州^宿州^池州^淮南^巢湖^阜阳^六安^宣城^亳州*福建|福州^厦门^莆田^三明^泉州^漳州^南平^龙岩^宁德*江西|南昌市^景德镇^九江^鹰潭^萍乡^新馀^赣州^吉安^宜春^抚州^上饶*山东|济南^青岛^淄博^枣庄^东营^烟台^潍坊^济宁^泰安^威海^日照^莱芜^临沂^德州^聊城^滨州^菏泽*河南|郑州^开封^洛阳^平顶山^安阳^鹤壁^新乡^焦作^濮阳^许昌^漯河^三门峡^南阳^商丘^信阳^周口^驻马店^济源*湖北|武汉^宜昌^荆州^襄樊^黄石^荆门^黄冈^十堰^恩施^潜江^天门^仙桃^随州^咸宁^孝感^鄂州*湖南|长沙^常德^株洲^湘潭^衡阳^岳阳^邵阳^益阳^娄底^怀化^郴州^永州^湘西^张家界*广东|广州^深圳^珠海^汕头^东莞^中山^佛山^韶关^江门^湛江^茂名^肇庆^惠州^梅州^汕尾^河源^阳江^清远^潮州^揭阳^云浮*广西|南宁^柳州^桂林^梧州^北海^防城港^钦州^贵港^玉林^南宁地区^柳州地区^贺州^百色^河池*海南|海口^三亚*四川|成都^绵阳^德阳^自贡^攀枝花^广元^内江^乐山^南充^宜宾^广安^达川^雅安^眉山^甘孜^凉山^泸州*贵州|贵阳^六盘水^遵义^安顺^铜仁^黔西南^毕节^黔东南^黔南*云南|昆明^大理^曲靖^玉溪^昭通^楚雄^红河^文山^思茅^西双版纳^保山^德宏^丽江^怒江^迪庆^临沧*西藏|拉萨^日喀则^山南^林芝^昌都^阿里^那曲*陕西|西安^宝鸡^咸阳^铜川^渭南^延安^榆林^汉中^安康^商洛*甘肃|兰州^嘉峪关^金昌^白银^天水^酒泉^张掖^武威^定西^陇南^平凉^庆阳^临夏^甘南*宁夏|银川^石嘴山^吴忠^固原*青海|西宁^海东^海南^海北^黄南^玉树^果洛^海西*新疆|乌鲁木齐^石河子^克拉玛依^伊犁^巴音郭勒^昌吉^克孜勒苏柯尔克孜^博尔塔拉^吐鲁番^哈密^喀什^和田^阿克苏*香港|*澳门|*台湾|台北^高雄^台中^台南^屏东^南投^云林^新竹^彰化^苗栗^嘉义^花莲^桃园^宜兰^基隆^台东^金门^马祖^澎湖*其它|北美洲^南美洲^亚洲^非洲^欧洲^大洋洲"
+                    //如果文本与值不同，请输入在文本后加上@值,如:北京@010|东城@001^西城@002
+                    var TheSplit1 = "*"  //北京与上海的分隔符
+                    var TheSplit2 = "|"  //北京与东城的分隔符
+                    var TheSplit3 = "^"  //东城与西城的分隔符
+                    var TheSplit4 = "@"  //文本与值的分隔符，可以省略
+                    var hwallselecttext = hw_selecttext
+                    var hwdefault_value = "浙江杭州"
+
+                    //默认值，在值有相同时有bug。
+
+                    document.write('<select name="hw_1" onChange = "hw_select()"></select> <select name="hw_2" onChange = "hw_select()"></select><input class="input" size="15" type="input" value="'+hwdefault_value+'" name="hw">\n');
+                    var hwallselecttextarr
+                    hwallselecttextarr = hwallselecttext.split(TheSplit1)
+                    hwArraylength = hwallselecttextarr.length
+                    var hwwhere = new Array(hwArraylength);
+                    hwwhere[0]= new hw_comefrom("请选择@","请选择@");
+
+                    for (var hwl=0;hwl<hwArraylength;hwl++)
+                    {
+                     eval(hwwhere[hwl+1] = new hw_comefrom(hwallselecttextarr[hwl].split(TheSplit2)[0],hwallselecttextarr[hwl].split(TheSplit2)[1]))
+                    }
+                    function hw_comefrom(hwSelect_s1,hwSelect_s2) { this.hwSelect_s1 = hwSelect_s1; this.hwSelect_s2 = hwSelect_s2; } 
+
+                    function hw_select()
+                    {
+                     with(document.all.hw_1)
+                     {
+                      var hwSelect_s12 = options[selectedIndex].value;
+                     }
+                     for(hwi = 0;hwi < hwwhere.length;hwi ++)
+                     {
+                      if (hwwhere[hwi].hwSelect_s1.indexOf(TheSplit4)!=-1)
+                      {
+                       var hwThisV = hwwhere[hwi].hwSelect_s1.split(TheSplit4)[1]
+                      }
+                      else
+                      {
+                       var hwThisV = hwwhere[hwi].hwSelect_s1
+                      }
+                      if (hwThisV == hwSelect_s12)
+                      {
+                       hwSelect_s13 = (hwwhere[hwi].hwSelect_s2).split(TheSplit3);
+                       for(hwj = 0;hwj < hwSelect_s13.length;hwj++)
+                       {
+                        with(document.all.hw_2)
+                        {
+                         length = hwSelect_s13.length;
+                         if (hwSelect_s13[hwj].indexOf(TheSplit4)!=-1)
+                         {
+                          options[hwj].text = hwSelect_s13[hwj].split(TheSplit4)[0]
+                          options[hwj].value = hwSelect_s13[hwj].split(TheSplit4)[1]
+                         }
+                         else
+                         {
+                          options[hwj].text = hwSelect_s13[hwj];
+                          options[hwj].value = hwSelect_s13[hwj];
+                         }
+                         var hwSelect_s14=options[selectedIndex].value;
+                        }
+                       }
+                      break;
+                      }
+                     }
+                     document.all.hw.value=hwSelect_s12+""+hwSelect_s14;
+                    }
+                    function hw_init()
+                    {
+                     with(document.all.hw_1)
+                     {
+                      length = hwwhere.length;
+                      var hwm = 0
+                      for(hwk=0;hwk<hwwhere.length;hwk++)
+                      {
+                       if (hwwhere[hwk].hwSelect_s1.indexOf(TheSplit4)!=-1)
+                       {
+                        options[hwk].text = hwwhere[hwk].hwSelect_s1.split(TheSplit4)[0];
+                        options[hwk].value = hwwhere[hwk].hwSelect_s1.split(TheSplit4)[1];
+                        if (hwdefault_value.indexOf(hwwhere[hwk].hwSelect_s1.split(TheSplit4)[1])!=-1){hwm = hwk}
+                       }
+                       else
+                       {
+                        options[hwk].text = hwwhere[hwk].hwSelect_s1;
+                        options[hwk].value = hwwhere[hwk].hwSelect_s1;
+                        if (hwdefault_value.indexOf(hwwhere[hwk].hwSelect_s1)!=-1){hwm = hwk}
+                       }
+                      }
+                      selectedIndex = hwm
+                     }
+                     with(document.all.hw_2)
+                     {
+                      var hwn = 0
+                      hwSelect_s13 = (hwwhere[hwm].hwSelect_s2).split(TheSplit3);
+                      length = hwSelect_s13.length;
+                      for(hwl=0;hwl<length;hwl++)
+                      {
+                       if (hwSelect_s13[hwl].indexOf(TheSplit4)!=-1)
+                       {
+                        options[hwl].text = hwSelect_s13[hwl].split(TheSplit4)[0];
+                        options[hwl].value = hwSelect_s13[hwl].split(TheSplit4)[1];
+                        if (hwdefault_value.indexOf(hwSelect_s13[hwl].split(TheSplit4)[1])!=-1){hwn = hwl}
+                       }
+                       else
+                       {
+                        options[hwl].text = hwSelect_s13[hwl];
+                        options[hwl].value = hwSelect_s13[hwl];
+                        if (hwdefault_value.indexOf(hwSelect_s13[hwl])!=-1){hwn = hwl}
+                       }
+                      }
+                      selectedIndex = hwn
+                     }
+                    }
+                    hw_init();
+
+                    </script>
+                    </li>
+                     </ul>
+                     <button type="submit" name="submit" action="{:U('edit')}" method="post"  style="width:160px; height:30px;border:none; color:white;background:gray;border-radius:5px;margin-left:150px;">保存修改</button>
+                    </form>
+
+                  <ul>
+       <input type="hidden" id="carid" value="{$info['id']}">
+				  <div id="parent">
+<h4>留言内容：</h4>
+<div id="box" style="min-height:200px;overflow-y:auto;max-height:200px;border: 1px solid #ddd; margin-bottom: 10px"></div>
+<input type="text" style="width: 100%; height: 30px; overflow: auto; " id="text"><br />
+<input id="btn" type="button" onclick="fnsubmit()" value="发表留言" />   <input id="btn" type="button" onclick="clearmsg()" value="清除留言" />
+</div>
+				  
+				  
+             <!-- <form style="margin-top:-350px;" class="" name="form" action="{:U('edit')}"  method="post"  role="form">
+                  <input type="hidden" name="carid" value="{$info['id']}">
+                  <input type="hidden" name="type" value="4">
+                  <div style="height:150px;width:500px;border:1px solid gray;overflow-y:scroll;overflow-x:hidden;">
+                    
+                  </div><br/>
+                  <script>
+                  var obj = document.getElementById("cc");
+                  obj.scrollTop=obj.scrollHeight*(Math.random());
+                  </script>
+
+                  <p class="form_item">
+                  <label style="float:left;" for="">备　　注：　　</label>
+                  <textarea style="width:400px;height:50px;" rows="8" cols="30" name="" id="msg" required></textarea>
+                  </p><br/>
+                  <p class="form_item">
+                  <input style="margin-left:110px;margin-top:-40px;" type="submit" id="" value="发表留言"/>
+                  <input style="margin-top:-40px;" type="button" id="clear" value="清除留言"/>  
+                  </p>
+                  </form>-->
+                  </ul>
+
+                  
+
+              </div>
+
+
+               <div id="main_2" style="display: none; ">
+                <form style="float:left;margin-top:20px;" name="form2" action="{:U('edit')}" method="post"  role="form">
+                 <input type="hidden" name="carid" value="{$info['id']}">
+                 <input type="hidden" name="type" value="3">
+
+
+                <table style="width:300px;margin-left:265px;" class="formdata"> 
+                <tr> 
+                <th scope="col">投保内容</th> 
+                <th scope="col">保单金额</th> 
+                <th scope="col">实付金额</th> 
+                </tr> 
+                <tr> 
+                    <td><input type="text"   value="交强险"/></td> 
+                    <td><input type="text"   value="{$ordercontent['jq_price']}"/></td>
+                    <td><input type="text"   value="{$ordercontent['jq_price']}"/></td> 
+                </tr> 
+               	<tr> 
+                   <td><input type="text"   value="车船税"/></td> 
+                   <td><input type="text"   value="{$ordercontent['cc_price']}"/></td>
+                   <td><input type="text"   value="{$ordercontent['cc_price']}"/></td> 
+               	</tr> 
+                <volist name="ordercontent['cateList']" id='list'>
+                	<tr> 
+                    <td><input type="text"   value="{$list['name']}"/></td> 
+                    <td><input type="text"   value="{$list['price']}"/></td>
+                    <td><input type="text"   value="{$list['disPrice']}"/></td> 
+                	</tr> 
+                	<if condition="$list['noPayPrice'] neq 0">
+	                	<tr> 
+	                    <td><input type="text"   value="{$list['name']} 免赔部分"/></td> 
+	                    <td><input type="text"   value="{$list['noPayPrice']}"/></td>
+	                    <td><input type="text"   value="{$list['disNoPayPrice']}"/></td> 
+	                	</tr> 
+                	</if>
+
+                </volist>
+               
+               
+                <tr>         
+                    <td><input type="text" name="harddisk2004" id=""/></td> 
+                    <td>合计<input type="text" value="{$ordercontent['allPrice']}"/></td>
+                    <td>合计<input type="text" value="{$ordercontent['finalAmount']}"/></td>          
+                </tr> 
+                <tr>             
+                    <td colspan="3">保险公司退点折扣:{$ordercontent['rate']}</td> 
+                </tr> 
+                </table> 
+
+                     
+
+
+              <ul style="margin-top:-140px;">
+                <volist name='orderFields' id='field'>
+                <li> {$field}：　<input style="width:100px;height:30px;" type="text" name="{$key}" value="{$orderInfo[$key]}"></li>
+                </volist>        
+              </ul>
+
+             <button type="submit" name="submit" action="{:U('edit')}" method="post"  style="width:160px; height:30px;border:none; color:white;background:gray;border-radius:5px;margin-left:150px;margin-top:40px;">保存修改</button>
+            </form>
+
+            </div>
+
+               <div id="main_3" style="display: none;">
+                <form method="post" action="{:U('package/diy')}" style="float:left;margin-top:10px;">
+                  <ul>
+                  <li>
+                    <input id="bx" name="jq" type="checkbox" checked="checked" /> 交强险+车船险（必选）
+                  </li>
+
+                  <li>
+                    <input name="dsfzr" type="checkbox" 
+                    <if condition="$package['dsfzr'] eq 1"> checked="checked" </if> /> 第三者责任险  <select style="margin-left:100px;" name="dsfzr_level"   data-valid="isNonEmpty" data-error="选择保额">
+                        <option >请选择</option>
+                        <option value="1" <if condition="$package['dsfzr_level'] eq 1"> selected = "selected" </if>>5万</option>
+                        <option value="2" <if condition="$package['dsfzr_level'] eq 2"> selected = "selected" </if>>10万</option>   
+                        <option value="3" <if condition="$package['dsfzr_level'] eq 3"> selected = "selected" </if>>15万</option>   
+                        <option value="4" <if condition="$package['dsfzr_level'] eq 4"> selected = "selected" </if>>20万</option>
+                        <option value="5" <if condition="$package['dsfzr_level'] eq 5"> selected = "selected" </if>>30万</option>
+                        <option value="6" <if condition="$package['dsfzr_level'] eq 6"> selected = "selected" </if>>50万</option>
+                        <option value="7" <if condition="$package['dsfzr_level'] eq 7"> selected = "selected" </if>>100万</option>
+                        <option value="8" <if condition="$package['dsfzr_level'] eq 8"> selected = "selected" </if>>150万</option>
+                        <option value="9" <if condition="$package['dsfzr_level'] eq 9"> selected = "selected" </if>>200万</option>
+                      </select>
+                    <input name="dsfzr_nopay" type="checkbox"
+                      <if condition="$package['dsfzr_noPay'] eq 1"> checked="checked" </if> />不计免赔
+
+					
+					<div class="fr"></div>
+                    
+                    
+                  </li>
+                  <li>
+                    <input name="clss" type="checkbox"  <if condition="$package['clss'] eq 1"> checked="checked" </if> /> 车辆损失险
+                    <input name="clss_nopay" type="checkbox"
+                      <if condition="$package['clss_noPay'] eq 1"> checked="checked" </if> />不计免赔
+                  </li>
+                  <li>
+                    <input name="qcdq" type="checkbox"  <if condition="$package['qcdq'] eq 1"> checked="checked" </if> /> 全车盗抢险
+                    <input name="qcdq_nopay" type="checkbox"  
+                    <if condition="$package['qcdq_noPay'] eq 1"> checked="checked" </if> />不计免赔
+                  </li>
+                  <li>
+                    <input name="sjzwzr" type="checkbox" <if condition="$package['sjzwzr'] eq 1"> checked="checked" </if> /> 司机乘坐责任险
+                   
+                    <select  style="margin-left:100px;"  name="sjzwzr_level"  data-valid="isNonEmpty" data-error="选择保额">
+                        <option >请选择</option>
+                        <option value="1" <if condition="$package['sjzwzr_level'] eq 1"> selected = "selected" </if>>1万</option>
+                        <option value="2" <if condition="$package['sjzwzr_level'] eq 2"> selected = "selected" </if>>2万</option> 
+                        <option value="3" <if condition="$package['sjzwzr_level'] eq 3"> selected = "selected" </if>>3万</option>
+                        <option value="4" <if condition="$package['sjzwzr_level'] eq 4"> selected = "selected" </if>>5万</option>
+                        <option value="5" <if condition="$package['sjzwzr_level'] eq 5"> selected = "selected" </if>>10万</option>   
+                        <option value="6" <if condition="$package['sjzwzr_level'] eq 6"> selected = "selected" </if>>20万</option>
+                        </select>
+						
+						 <input name="sjzwzr_nopay" type="checkbox"  <if condition="$package['sjzwzr_noPay'] eq 1"> checked="checked" </if> />不计免赔
+                  </li>
+                    <li>
+                    <input name="ckzwzr" type="checkbox"  <if condition="$package['ckzwzr'] eq 1"> checked="checked" </if> /> 乘客座位责任险
+                   
+                    <select  style="margin-left:100px;"  name="ckzwzr_level"  data-valid="isNonEmpty" data-error="选择保额">
+                        <option >请选择</option>
+                        <option value="1" <if condition="$package['ckzwzr_level'] eq 1"> selected = "selected" </if>>1万</option>
+                        <option value="2" <if condition="$package['ckzwzr_level'] eq 2"> selected = "selected" </if>>2万</option> 
+                        <option value="3" <if condition="$package['ckzwzr_level'] eq 3"> selected = "selected" </if>>3万</option>
+                        <option value="4" <if condition="$package['ckzwzr_level'] eq 4"> selected = "selected" </if>>5万</option>
+                        <option value="5" <if condition="$package['ckzwzr_level'] eq 5"> selected = "selected" </if>>10万</option>   
+                        <option value="6" <if condition="$package['ckzwzr_level'] eq 6"> selected = "selected" </if>>20万</option>
+                        </select>
+						 <input name="ckzwzr_nopay" type="checkbox"  <if condition="$package['ckzwzr_noPay'] eq 1"> checked="checked" </if> />不计免赔
+                  </li>
+                  <li>
+                    <input name="bl" type="checkbox" <if condition="$package['bl'] eq 1"> checked="checked" </if> /> 玻璃单独破碎险
+                    <select class="fr" style="margin-right:15px;"   name="bl_level" data-valid="isNonEmpty" data-error="选择保额">
+                        <option >请选择</option>
+                        <option value="1" <if condition="$package['bl_level'] eq 1"> selected = "selected" </if>>国产玻璃</option>
+                        <option value="2" <if condition="$package['bl_level'] eq 2"> selected = "selected" </if>>进口玻璃</option>
+                      </select>
+                  </li>
+                  <li>
+                    <input name="ss" type="checkbox"  <if condition="$package['ss'] eq 1"> checked="checked" </if>/> 涉水险
+                   <input name="ss_nopay" type="checkbox"  <if condition="$package['ss_noPay'] eq 1"> checked="checked" </if>/>不计免赔
+                  </li>
+                  <li>
+                    <input name="hh" type="checkbox"  <if condition="$package['hh'] eq 1"> checked="checked" </if>/> 车身划痕险
+                
+                    <select  style="margin-left:100px;"   name="hh_level" data-valid="isNonEmpty" data-error="选择保额">
+                        <option value="">请选择</option>
+                        <option value="1" <if condition="$package['hh_level'] eq 1"> selected = "selected" </if>>2000</option>
+                        <option value="2" <if condition="$package['hh_level'] eq 2"> selected = "selected" </if>>5000</option>
+                        <option value="3" <if condition="$package['hh_level'] eq 3"> selected = "selected" </if>>10000</option>
+                        <option value="4" <if condition="$package['hh_level'] eq 4"> selected = "selected" </if>>20000</option>
+                      </select>
+					      <input name="hh_nopay" type="checkbox"  <if condition="$package['hh_noPay'] eq 1"> checked="checked" </if>/>不计免赔
+                  </li>
+                  <li>
+                    <input name="zr" type="checkbox"  
+                    <if condition="$package['hh_noPay'] eq 1"> checked="checked" </if> /> 自然损失险<br/><br/>
+                  </li>
+                  <li>
+                    <input  style="margin-left:100px;" type="submit" value="计算">
+                  </li>
+                  </ul>
+                  <input type="hidden" name="carid" value="{$info['id']}">
+                </form>
+                </div>
+
+       </div>
+
+  </body>
+</html>

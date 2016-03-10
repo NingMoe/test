@@ -1,0 +1,30 @@
+<extend name="Public/base"/>
+
+<!-- 子导航 -->
+<block name="sidebar">
+    <include file="Public/sidemenu" />
+</block>
+
+<block name="body">
+	<div style="margin:20px;float:left;padding:20px;">
+	编号：{$info['id']}<br><br>
+	<form method="post" action="editInfo" >
+<volist name="editFields" id="field">
+	<span>{$field}:</span><input type="text" name="{$key}" value="{$info[$key]}" style='width:380px;text-align: center;'><br/>
+</volist>
+	<input type="hidden" name="id" value="{$info['id']}">
+	<input type="submit" value="提交">
+	</form>
+
+	</div>
+</block>
+
+<block name="script">
+<link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+$(function(){
+	//搜索功能
+	
+});
+</script>
+</block>

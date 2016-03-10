@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>在此处插入标题</title>
+<link rel="stylesheet" href="__PUBLIC__/Admin/css/login.css">
+<script src="__PUBLIC__/Admin/js/jquery-1.9.1.js"></script>
+</head>
+<body>
+	<div class="main">
+	<form method="post" action="{:U('Admin/update')}">
+		<ul >
+			<li><input name="account" type="text" value="{$data.account}" onfocus="if (value =='{$data.account}'){value =''}" onblur="if (value ==''){value='{$data.account}'}"/> <span>用户名:</span>
+			</li>
+			<li><input name="password" type="text"value="设置密码" onfocus="if (value =='设置密码'){value =''}"/> <span>密   码:</span>
+			</li>
+		</ul>
+		<input name="uid" type="hidden" value="{$data.uid}"/>
+		<div class="button">
+			<input type="submit" name="submit" value="提&nbsp;&nbsp;&nbsp;交"
+				style="magrin-left:15px; width: 135px; height: 38px; cursor: pointer; background: #06e; border: 0; color: #FFF; font-size: 14px; font-weight: 600; border-radius: 4px; position: relative; top: 15px;" />
+		</div>
+		</form>
+	</div>
+</body>
+</html>

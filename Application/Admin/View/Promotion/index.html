@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    #nav{
+      width:1500px;
+      height:1000px;
+          }
+    #preview{width:260px;height:190px;border:1px solid #000;overflow:hidden;}
+    #imghead {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);}
+
+  </style>
+
+
+<extend name="Public/base"/>
+
+<!-- 子导航 -->
+<block name="sidebar">
+    <include file="Public/sidemenu" />
+</block>
+
+<block name="body">
+
+     
+<div style="float:left;margin-left:45px; margin-top:10px;">
+      
+   <input style="width:200px;height:30px;" placeholder="请输入日期" class="laydate-icon" onclick="laydate()">至
+   <input style="width:200px;height:30px;" placeholder="请输入日期" class="laydate-icon" onclick="laydate()"><br/><br/>
+   快速查看：<button style="width:100px; height:40px;border:none; color:white;background:#3FBC00;border-radius:5px;margin-top:px;" type="submit">最近7天</button>
+    <button style="width:100px; height:40px;border:none; color:white;background:#3FBC00;border-radius:5px;margin-top:px;" type="submit">最近30天</button>
+    　　<button style="width:100px; height:40px;border:none; color:white;background:#3FBC00;border-radius:5px;" type="submit">筛选 </button><br/>
+  
+
+      
+
+        <table style="width:700px;height:300px;border:1px solid #3FBC00;margin-top:20px;">
+          <tr style="width:500px;height:40px;background:#3FBC00;">
+          <volist name="fields" id="field">
+            <th>{$field}</th>
+          </volist>
+            <th>操作</th>
+          </tr>
+          <volist name="list" id='item'>
+	         <tr>
+	         	<volist name="fields" id="field">
+	         		<if condition="$key eq 'ticket_url'">
+                    <td style="min-width:100px;min-height: 100px;">
+	         			<img src="{$item[$key]}" style="width:100px;height:100px;">
+                    </td>
+	         		<else />
+                    <td >
+	         			{$item[$key]}
+                    </td>
+	         		</if>
+
+	            </volist>
+	            <td>
+	            	<a href="editInfo?id={$item['id']}">编辑</a> |
+                    <a href="del?id={$item['id']}">删除</a> |
+                    <a href="addReply?id={$item['id']}">添加回复</a>
+	            </td>
+	         </tr>
+         </volist>
+
+        </table>
+  </div>
+  <div style="float:left;margin:30px;">
+  	<form action="addUser" method="post">
+  		姓名:<input type="text" name="name" >
+  		<br/>
+  		<input type="submit" value="新增推广">
+  	</form>
+  </div>
+           
+
+      
+</block>
+  
+	
+    
+</body>
+</html>

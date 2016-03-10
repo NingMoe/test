@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>选择保险套餐</title>
+<link href="111__PUBLIC__/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="__PUBLIC__/static/nn/css/nn.css" rel="stylesheet">
+<script type="text/javascript">
+function check()
+{
+document.getElementById("bx").checked=true;
+}
+check();
+</script>
+</head>
+<body>
+<div style="margin:0 auto;">
+<form method="post" action="diy" >
+	<ul>
+	<li>
+		<input id="bx" name="jq" type="checkbox" checked="checked" /> 交强险+车船险（必选）
+	</li>
+	<li>
+		<input name="dsfzr" type="checkbox"  checked="checked" /> 第三者责任险  
+		<div class="fr"><input name="dsfzr_nopay" type="checkbox"  checked="checked" />不计免赔</div>
+		<select class="fr" style="margin-right:15px;"    name="dsfzr_level"   data-valid="isNonEmpty" data-error="选择保额">
+        <option >请选择</option>
+        <option value="1">5万</option>
+        <option value="2">10万</option>   
+        <option value="3">15万</option>   
+        <option value="4">20万</option>
+        <option value="5">30万</option>
+        <option value="6">50万</option>
+        <option value="7" >100万</option>
+        <option value="8" selected = "selected">150万</option>
+        <option value="9">200万</option>
+     	</select>
+		
+	</li>
+	<li>
+		<input name="clss" type="checkbox"  checked="checked" /> 车辆损失险
+		<div class="fr"><input name="clss_nopay" type="checkbox"  checked="checked" />不计免赔</div>
+	</li>
+	<li>
+		<input name="qcdq" type="checkbox"  checked="checked" /> 全车盗抢险
+		<div class="fr"><input name="qcdq_nopay" type="checkbox"  checked="checked" />不计免赔</div>
+	</li>
+	<li>
+		<input name="sjzwzr" type="checkbox" /> 司机乘坐责任险
+		<div class="fr"><input name="sjzwzr_nopay" type="checkbox"  />不计免赔</div>
+		<select class="fr" style="margin-right:15px;"  name="sjzwzr_level"  data-valid="isNonEmpty" data-error="选择保额">
+        <option >请选择</option>
+        <option value="1">1万</option>
+        <option value="2">2万</option> 
+        <option value="3">3万</option>
+        <option value="4">5万</option>
+        <option value="5">10万</option>   
+        <option value="6" selected = "selected">20万</option>
+       	</select>
+	</li>
+		<li>
+		<input name="ckzwzr" type="checkbox"  /> 乘客座位责任险
+		<div class="fr"><input name="ckzwzr_nopay" type="checkbox"  />不计免赔</div>
+		<select class="fr" style="margin-right:15px;"  name="ckzwzr_level"  data-valid="isNonEmpty" data-error="选择保额">
+        <option >请选择</option>
+        <option value="1">1万</option>
+        <option value="2">2万</option> 
+        <option value="3">3万</option>
+        <option value="4">5万</option>
+        <option value="5">10万</option>   
+        <option value="6" selected = "selected">20万</option>
+       	</select>
+	</li>
+	<li>
+		<input name="bl" type="checkbox"  /> 玻璃单独破碎险
+		<select class="fr" style="margin-right:15px;"   name="bl_level" data-valid="isNonEmpty" data-error="选择保额">
+        <option >请选择</option>
+        <option value="1" selected = "selected">国产玻璃</option>
+        <option value="2" >进口玻璃</option>
+     	</select>
+	</li>
+	<li>
+		<input name="ss" type="checkbox"  /> 涉水险
+		<div class="fr"><input name="ss_nopay" type="checkbox"  />不计免赔</div>
+	</li>
+	<li>
+		<input name="hh" type="checkbox"  /> 车身划痕险
+		<div class="fr"><input name="hh_nopay" type="checkbox"  />不计免赔</div>
+		<select class="fr" style="margin-right:15px;"   name="hh_level" data-valid="isNonEmpty" data-error="选择保额">
+        <option value="">请选择</option>
+        <option value="1">2000</option>
+        <option value="2" selected = "selected">5000</option>
+        <option value="3" >10000</option>
+        <option value="4">20000</option>
+     	</select>
+	</li>
+	<li>
+		<input name="zr" type="checkbox"  /> 自然损失险
+	</li>
+	<li style="text-align: center;">
+		<input type="submit" value="计算">
+	</li>
+	</ul>
+</form>
+</div>

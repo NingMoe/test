@@ -1,0 +1,33 @@
+<extend name="Public/base"/>
+
+<!-- 子导航 -->
+<block name="sidebar">
+    <include file="Public/sidemenu" />
+</block>
+
+<block name="body">
+    <div style="border-bottom:none;margin-left: 240px;margin-top: 20px;">
+        <form action="{:U('edit')}" method="post">
+            <volist name="fields" id="field" offset="1" >
+               <span style="vertical-align: top;"> {$field}:</span><input type="text"  name="{$key}" value="{$info[$key]}"> <br>
+            </volist>
+            <br>
+            <input type="hidden" name="roleId" value="{$roleId}">
+            <input type="hidden" name="id" value="{$info['id']}">
+            <input type="submit" style="margin-left: 0px; margin-top: 5px;" value="更新">
+        </form>
+    </div>
+
+
+</div>
+</block>
+
+<block name="script">
+<link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+$(function(){
+	//搜索功能
+	
+});
+</script>
+</block>

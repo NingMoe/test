@@ -1,0 +1,31 @@
+<extend name="Public/base"/>
+
+<!-- 子导航 -->
+<block name="sidebar">
+    <include file="Public/sidemenu" />
+</block>
+
+<block name="body">
+	<div style="margin:20px;float:left;padding:20px;">
+	编号：{$info['id']}<br><br>
+	<form method="post" action="addReply"  enctype="multipart/form-data">
+	<input type="file" name="reply_imgid" style="margin-left:0px"><br>
+	链接地址:<input name='reply_url' type="text" style='width:380px;text-align: center;'> <br><br>
+	标题:<input name='title' type="text" style='width:380px;text-align: center;'> <br><br>
+	描述:<input name='description' type="text" style='width:380px;text-align: center;'> <br><br>
+	<input type="hidden" name="id" value="{$info['id']}">
+	<input type="submit" value="提交">
+	</form>
+
+	</div>
+</block>
+
+<block name="script">
+<link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+$(function(){
+	//搜索功能
+	
+});
+</script>
+</block>

@@ -1,0 +1,44 @@
+<extend name="Public/base"/>
+
+<!-- 子导航 -->
+<block name="sidebar">
+    <include file="Public/sidemenu" />
+</block>
+
+<block name="body">
+	<!-- 标题 -->
+	<form action="edit" method="post">
+
+	
+	<volist name="fields" id="field" offset="0" length='3' >
+	<span>{$field}:{$info[$key]} | </span>
+	</volist>
+	<hr>
+	<img style="width:300px;height:200px" src="{:getImg($info['first_id'])}"> <img style="width:300px;height:200px" src="{:getImg($info['second_id'])}">
+	<hr/>
+	<volist name="fields" id="field" offset="3" length='5' >
+	{$field}:<input name='{$key}' type="text" style='width:120px;text-align: center;' value="{$info[$key]}"> &nbsp;&nbsp;
+	</volist>
+	<hr/>
+	<volist name="fields" id="field" offset="8" length='4' >
+	{$field}:<input name='{$key}' type="text" style='width:120px;text-align: center;' value="{$info[$key]}"> &nbsp;&nbsp;
+	</volist>
+	<hr/>
+	<volist name="fields" id="field" offset="12" length='7' >
+	{$field}:<input name='{$key}' type="text" style='width:120px;text-align: center;' value="{$info[$key]}"> &nbsp;&nbsp;
+	</volist>
+	<hr/>
+	<input type="hidden" name="id" value="{$info['id']}">
+	<input type="submit" name="确定" value='提交信息'> &nbsp;&nbsp; 
+	</form>
+</block>
+
+<block name="script">
+<link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+$(function(){
+	//搜索功能
+	
+});
+</script>
+</block>

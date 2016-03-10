@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=">
+<title>登录</title>
+<link rel="stylesheet" href="__PUBLIC__/Admin/css/login.css">
+<script src="__PUBLIC__/Admin/js/jquery-1.9.1.js"></script>
+<script>
+
+</script>
+<script>
+function check_login(){
+	var account = $('#account').val();
+	var password = $('#password').val();
+	var code = $('#code').val();	//验证码
+	var check_code = $('#check_code').val();	//验证码验证结果
+	if(account == ''){
+		layer.tips('请输入用户名', '#account');
+		return false;
+	}
+	if(password == ''){
+		layer.tips('请输入密码', '#password');
+		return false;
+	}
+	if(code == ''){
+		layer.tips('请输入验证码', '#code');
+		return false;
+	}
+	if(check_code == 0){
+		layer.tips('验证码错误', '#code');
+		return false;
+	}
+	return true;
+}
+</script>
+</head>
+<body>
+<div class="main">
+	<div class="login">
+	<form name="loginform" id="loginform" method="post" action="{:U('Public/login')}" onSubmit="return check_login()">
+	  <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+	    <tr>
+	      <td width="12%">用户名：</td>
+	      <td ><input type="text" name="account" id="account" class="infoInput" maxlength="20" value="" style="width:180px; height:30px; margin-top:5px; font-size:16px; padding-left:3px;" /></td>
+        </tr>
+	    <tr>
+	      <td height="36">密&nbsp;&nbsp;&nbsp;码：</td>
+	      <td><input type="password" name="password" id="password" value="" style="width:180px; height:30px; margin-top:12px; font-size:16px; padding-left:3px;" /></td>
+        </tr>
+	    <tr>
+	      <td>验证码：</td>
+	      <td><input type="text" name="code" id="codecheck" maxlength="3" value="" style="width:80px; height:30px; text-transform: uppercase; margin-top:12px; font-size:16px; padding-left:3px;" />
+	      <span id="checktext">ok</span></td>
+	      
+        </tr>
+        <tr>
+        	<td>  </td>
+        	<td>
+        	  <div id="code_img">
+	      	  <img style="border:1px solid #D4E7F6; cursor:pointer;width:120px;height:30px;margin-top:10px;" title="点我刷新哦！" src="{:U('Public/verify')}" onclick="javascript:this.src=this.src+'?time='+Math.random()" />
+	      	  </div>
+	        </td>
+        </tr>
+      </table>
+      <div class="button">
+      <input type="submit" name="submit" value="登&nbsp;&nbsp;&nbsp;录" style="width:185px; height:38px; cursor:pointer; background:#06F; border:0; color:#FFF; font-size:14px; font-weight:600; border-radius:4px; position:relative; top:15px;" />
+      </div>
+	  </form>
+	</div>
+</div>
+
+
+</body>
+</html>
+

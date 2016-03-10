@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link href="__PUBLIC__/static/nn/css/sidemenu.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div id="subnav" class="subnav">
+                <li><a href="{:U('Rate/index')}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;导入费率表</a>
+                </li>
+                <li><a href="{:U('driving/index')}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;处理行驶证</a>
+                </li>
+                <li><a href="{:U('company/index')}">更新保险公司折扣</a>
+                </li>
+                <li><a href="{:U('promotion/index')}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;推广</a>
+                </li>
+</div>
+<script>
+    $(function(){
+        $(".side-sub-menu li").hover(function(){
+            $(this).addClass("hover");
+        },function(){
+            $(this).removeClass("hover");
+        });
+    })
+</script>
+
+</body>
+</html>

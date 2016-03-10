@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="Public/static/Admin/js/jquery-1.9.1.js"></script>
+</head>
+
+<body>
+
+    <extend name="Public/base"/>
+
+    <!-- 子导航 -->
+    <block name="sidebar">
+        <include file="Public/sidemenu" />
+    </block>
+
+    <block name="body">
+      <!-- 标题 -->
+	  
+	  
+      
+	<!-- 数据表格 -->
+         <div >   
+            <form style="margin-left:230px;" name="form" action="{:U('driving/index')}"  method="post"  role="form"> 
+             <input type="hidden" name="carid" value="{$info['id']}">
+             <input type="hidden" name="type" value="1">
+            <span><input style="width:250px; height:35px;margin-top:20px;margin-left:10px;" type="text" name="texts" placeholder="输入按条件查询的内容，日期不包括在内..." /><input style="width:60px; height:35px; background-color:#05A7CB; border:none; color:white;" type="submit" name="sub" value="搜索"/></span>
+			<br> <input style="width:200px;height:30px;" placeholder="请输入日期" name="fromdata" class="laydate-icon" onclick="laydate()">至
+   <input style="width:200px;height:30px;" placeholder="请输入日期" name="todata" class="laydate-icon" onclick="laydate()">
+   
+   
+    <input style="width:10px;margin-left:10px;" name="regdata" type="checkbox">注册日期  <br><br>
+	<input style="width:10px;margin-left:10px;" name="froms" type="checkbox">来源&nbsp;&nbsp;<input style="width:250px; height:35px" type="text" name="fromtext" placeholder="" />
+	<input style="width:10px;margin-left:10px;" name="status" type="checkbox">状态&nbsp;&nbsp;<input style="width:250px; height:35px" type="text" name="statustext" placeholder="" /> <br><br>
+	<input style="width:10px;margin-left:10px;" name="mobile" type="checkbox">手机id &nbsp;&nbsp;<input style="width:250px; height:35px" type="text" name="mobiletext" placeholder="" />
+	<input style="width:10px;margin-left:10px;" name="platenumber" type="checkbox">车牌号码&nbsp;&nbsp;<input style="width:250px; height:35px" type="text" name="platenumbertext" placeholder="" />
+   
+   
+   
+   
+   <br/><br/>
+            </form>
+			</div>
+			
+			<div style="margin-left:280px;">
+          {$page}
+      </div>
+			<div style="overflow:none;">
+           <form class="" name="form" action="{:U('edit')}"  method="post"  role="form"> 
+             <input type="hidden" name="carid" value="{$info['id']}">
+             <input type="hidden" name="type" value="1">
+        <table style="float:left;margin-left:240px;margin-top:-300px;background:#dadada;">
+         <tr style="width:100px;height:40px;border:1px solid yellow;">
+            <th><button style="width:80px; height:40px;border:none; color:white;background:#05A7CB;">注册时间</button></th>
+            <th><button style="width:80px; height:40px;border:none; color:white;background:#05A7CB;">电话-ID</button></th>
+            <th><button style="width:80px; height:40px;border:none; color:white;background:#05A7CB;">微信昵称</button></th>
+            <th><button style="width:80px; height:40px;border:none; color:white;background:#05A7CB;">微信-ID</button></th>
+            <th><button style="width:80px; height:40px;border:none; color:white;background:#05A7CB;">车主姓名</button></th>
+            <th><button style="width:80px; height:40px;border:none; color:white;background:#05A7CB;">车牌号</button></th>
+            <th><button style="width:80px; height:40px;border:none; color:white;background:#05A7CB;">行驶证注册日期</button></th>
+            <th><button style="width:80px; height:40px;border:none; color:white;background:#05A7CB;">商业险到期日</button></th>
+            <th><button style="width:80px; height:40px;border:none; color:white;background:#05A7CB;">状态</button></th>
+            <th><button style="width:80px; height:40px;border:none; color:white;background:#05A7CB;">省份</button></th>
+            <th><button style="width:80px; height:40px;border:none; color:white;background:#05A7CB;">城市</button></th>
+            <th><button style="width:80px; height:40px;border:none; color:white;background:#05A7CB;">保险公司</button></th>
+            <th><button style="width:80px; height:40px;border:none; color:white;background:#05A7CB;">归属人</button></th>
+            <th><button style="width:80px; height:40px;border:none; color:white;background:#05A7CB;">备注</button></th>
+             <th><button style="width:80px; height:40px;border:none; color:white;background:#05A7CB;">推广员</button></th>
+            <th><button style="width:80px; height:40px;border:none; color:white;background:#05A7CB;">地理位置记录</button></th>
+          </tr>
+         <volist name='alld' id='car'>
+         <tr style="width:100px;height:40px;border:1px solid yellow;background:#dadada;" id="tmp" onclick="temp({$car['id']})">
+         	<volist name='fields' id='item'>
+                <td>
+                <if condition="$key eq 'action_status'">
+                        <volist name='statusFields' id='sf'>
+                           <if condition="$car['action_status'] eq $key">
+                               {$sf}
+                           </if>
+                        </volist>
+                    <elseif condition="$key eq 'promotion_id'"/>
+                    {:getPromotionName($car['promotion_id'])}
+                    <else/>
+                    {$car[$key]}
+                </if>
+         		</td>
+         	</volist>
+            <td><button style="width:80px; height:40px;border:none; color:white;background:#2EE82E;"><a style="color:white;" href="{:U('position/getlist')}?userid={$car['client_id']}">查看详情</a></button></td>   
+          </tr>
+
+         </volist>
+            </table>
+        </form>
+
+      </div>
+	  
+	  <div>
+  		</div>
+
+        <link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+
+        <link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript">
+              function temp(carid){
+            	  var tempUrl="edit/id/"+carid;
+            	  var url="{:U('" + tempUrl + "')}";
+                  window.location.href=url;
+              }
+        </script>
+        </block>
+            
+        </body>
+        </html>

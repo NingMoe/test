@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>在此处插入标题</title>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+
+wx.config({
+    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+    appId: '', // 必填，公众号的唯一标识
+    timestamp: , // 必填，生成签名的时间戳
+    nonceStr: '', // 必填，生成签名的随机串
+    signature: '',// 必填，签名，见附录1
+    jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+});
+
+</script>
+</head>
+<body style="padding:50px;">
+<a href="{:U('pricesheet/index')}">新报价new
+</a><br><br>
+<a href="{:U('red/topList')}">砍价榜
+</a><br><br>
+<a href="{:U('pricesheet/index')}">一键询价
+</a><br><br>
+<a href="{:U('package/index')}">自定义套餐
+</a><br><br>
+<a href="http://oneonebao.com/#out/sharecenter/160203495710149">分享砍价
+</a><br><br>
+<a href="{:U('upload/updriving')}">上传行驶证
+</a><br><br>
+<a href="{:U('upload/setaddcar')}">新增
+</a><br><br>
+<a href="{:U('order/getUncompleted')}">订单，支付与未支付
+</a><br><br>
+<a href="{:U('red/index')}">红包分享
+</a><br><br>
+<a href="{:U('order/getAll')}">订单所有
+</a><br><br>
+<a href="{:U('order/getAllDrings')}">所有行驶证
+</a><br><br>
+<a href="{:U('user/getAuthUrl')}">微信登录
+</a><br><br>
+<a href="{:U('index/getcars')}">首页所有车
+</a><br><br>
+<a href="{:U('upload/upIdentityCard')}">上传身份证
+</a><br><br>
+<a href="{:U('center/getstatus')}">状态
+</a><br><br>
+<a href="{:U('pay/pay?ordernum=160105569849')}">支付
+</a><br><br>
+<a href="{:U('pay/test')}">支付测试
+</a><br><br>
+<a href="{:U('package/getCurrentPackage')}">得到当前车套餐包
+</a><br><br>
+<a href="{:U('package/createPackageByHelpData')}">helpme test
+</a><br><br>
+<a href="">客服顾问
+</a><br><br>
+<img alt="" src="/Uploads/qr/qr.png">
+</body>
+</html>

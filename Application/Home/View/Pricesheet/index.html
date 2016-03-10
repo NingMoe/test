@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div style="padding:20px;align:0 auto;">
+pricesheet
+	<volist name='data' id='row'>
+		行驶证号：{$row['platenumber']}
+		<hr>
+		报价公司：<br><br>
+		<volist name='row["companynames"]' id='com'>
+		<a href="detail?companyid={$com['quoteid']}&drivingid={$row['carid']}">{$com['name']} | 总价:{$com['prize']}</a><br><br>
+		</volist>
+	</volist>
+</div>
+</body>
+</html>

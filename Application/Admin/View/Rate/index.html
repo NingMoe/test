@@ -1,0 +1,71 @@
+<extend name="Public/base"/>
+
+<!-- 子导航 -->
+<block name="sidebar">
+    <include file="Public/sidemenu" />
+</block>
+
+<block name="body">
+	<!-- 标题 -->
+	<div class="main-title" style="width:100%;height:1500px;background:url(__PUBLIC__/static/Admin/img/beijing.jpg) no-repeat;">
+		<form method="post" action="{:U(importE)}" enctype="multipart/form-data">
+		   		<h3 style="float:left;margin-left:50px;">导入Excel：</h3><br/><br/><br/><br/>
+				<input style="float:left;margin-left:50px;" type="file" name="fileinfo" /><br/><br/><input style="margin-left:50px;" type="submit"  value="导入" />
+       			
+       	</form>
+       	{$msg}
+	
+	<hr>
+	<div style="width:85.5%;height:1200px;background-color:white;float:left;margin-left:3px;margin-top:-20px;">
+	<span style="margin-left:50px;" class="label label-success"><a style="color:white;"href="importE">查看数据</a></span> |<span class="label label-warning"><a style="color:white;" href="index">隐藏数据</a></span><br/>
+
+
+
+	<!-- 数据表格 -->
+    <div class="data-table" style="float:left;margin-left:50px;">
+    
+    	<volist name='data' id='da'>
+<a href='importE?cate={$key}'>{$key}</a> | &nbsp;
+        </volist>
+        
+    	<volist name='data' id='da'>        
+<if condition="$key eq $cate">
+	    	<br>
+			<table>
+	              <!-- 列表 -->
+	            <tbody>
+	                <volist name="da" id="item">
+	                    <tr>
+	                         <th>{$key}:</td>
+	                         <volist name='item' id='value'>
+	                                                  <td>{$value}</td>
+	                         </volist>
+	                    </tr>
+	                </volist>
+	            </tbody>
+	        </table>
+	        <br>
+</if>
+
+        </volist>
+        
+        </div>
+	
+	<!-- 分页 -->
+    <div class="page">
+        {$_page}
+    </div>
+</div>
+</block>
+
+<block name="script">
+<link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+$(function(){
+	//搜索功能
+	
+});
+</script>
+</block>
+</div>
+</div>

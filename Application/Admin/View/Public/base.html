@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>yy | {$meta_title}</title>
+	 <!-- Bootstrap -->
+
+    <link href="__PUBLIC__/static/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="__PUBLIC__/static/nn/css/nn.css" rel="stylesheet">
+     <link href="__PUBLIC__/static/nn/css/base.css" rel="stylesheet"
+
+    <link href="__PUBLIC__/static/Admin/css/xu.css" type="text/css" rel="stylesheet" />
+     <link href="__PUBLIC__/static/Admin/bootstrap/js/bootstrap.js" type="text/css" rel="stylesheet" />
+     <link href="__PUBLIC__/static/Admin/bootstrap/img/glyphicons-halflings.png"/>
+    
+      <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/Admin/bootstrap/css/bootstrap-responsive.css" />
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/Admin/bootstrap/css/bootstrap.css" />
+    <script src="__PUBLIC__/static/Admin/laydate/laydate.js"></script>
+    <script src="__PUBLIC__/static/Admin/js/jquery-2.1.4.js"></script>
+ <script type="text/javascript">
+ 
+ //function(){
+						var n=0;  
+					  
+							 var iID=setInterval(function() { 
+                             var serverdiv = document.getElementById('serverppww');		         
+									   n++;
+					
+									 var xhr = new XMLHttpRequest();
+        xhr.open("POST", "{:U('port/newServiceNumber')}", true);
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.send('');
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+            	
+				   serverdiv.innerHTML='您有'+'<span style="color:red;font-size:1em">'+JSON.parse(xhr.responseText).num+'</span>'+'个报价待处理';
+					//	console.log(xhr.responseText);			 
+			
+               
+            }
+        }
+
+                               }, 1000); 
+							 
+							   
+							   
+							   
+							  // }
+ 
+ 
+ 
+ 
+ 
+  </script> 
+
+     <script type="text/javascript">
+     //图片上传预览    IE是用了滤镜。
+        function previewImage(file)
+        {
+          var MAXWIDTH  = 260; 
+          var MAXHEIGHT = 180;
+          var div = document.getElementById('preview');
+          if (file.files && file.files[0])
+          {
+              div.innerHTML ='<img id=imghead>';
+              var img = document.getElementById('imghead');
+              img.onload = function(){
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width  =  rect.width;
+                img.height =  rect.height;
+//                 img.style.marginLeft = rect.left+'px';
+                img.style.marginTop = rect.top+'px';
+              }
+              var reader = new FileReader();
+              reader.onload = function(evt){img.src = evt.target.result;}
+              reader.readAsDataURL(file.files[0]);
+          }
+          else //兼容IE
+          {
+            var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+            file.select();
+            var src = document.selection.createRange().text;
+            div.innerHTML = '<img id=imghead>';
+            var img = document.getElementById('imghead');
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+            div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
+          }
+        }
+        function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+            var param = {top:0, left:0, width:width, height:height};
+            if( width>maxWidth || height>maxHeight )
+            {
+                rateWidth = width / maxWidth;
+                rateHeight = height / maxHeight;
+                 
+                if( rateWidth > rateHeight )
+                {
+                    param.width =  maxWidth;
+                    param.height = Math.round(height / rateWidth);
+                }else
+                {
+                    param.width = Math.round(width / rateHeight);
+                    param.height = maxHeight;
+                }
+            }
+             
+            param.left = Math.round((maxWidth - param.width) / 2);
+            param.top = Math.round((maxHeight - param.height) / 2);
+            return param;
+        }
+      </script>   
+    <block name="style"></block>
+</head>
+<body>
+    <!-- 头部 -->
+    <div class="header">
+										        <!-- Logo -->
+										        <span class="logo"></span>
+										        <!-- /Logo -->
+
+        <!-- 主导航 -->
+        <div class="mainnav">
+									            <volist name="__MENU__.main" id="menu">
+									                <li class="{$menu.class|default=''}"><a href="{$menu.url|U}">{$menu.title}</a></li>
+									            </volist>
+           
+            <li><a href="{:U('Service/index')}?roleId=3">销售客服</a>
+            </li>
+            <li><a href="{:U('Service/index')}?roleId=2">电话客服</a>
+            </li>
+            <li><a href="{:U('Service/index')}?roleId=1">&nbsp;&nbsp;管理员</a>
+            </li>
+           
+        </div>
+        <!-- /主导航 -->
+
+        <!-- 用户栏 -->
+        <div class="user-bar">
+            <ul class="adminoperation">
+                <li class="manager">你好，<em title="{$adminName}">{$adminName}</em></li>
+				 <li ><a id="serverppww" href="#">您有<span style="color:red;font-size:1em">0</span>个报价待处理</a></li>
+                <li><a href="{:U('admin/add')}">添加管理</a></li>
+                <li><a href="{:U('User/updatePassword')}">修改密码</a></li>
+                <li><a href="{:U('User/updateNickname')}">修改昵称</a></li>
+                <li><a href="{:U('Public/logout')}">退出</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class=".clear"></div>
+    <!-- /头部 -->
+
+    <!-- 边栏 -->
+    <div class="sidebar">
+        <!-- 子导航 -->
+        <block name="sidebar">
+            <div id="subnav" class="subnav">
+            </div>
+        </block>
+        <!-- /子导航 -->
+    </div>
+    <!-- /边栏 -->
+
+    <!-- 内容区 -->
+    <div id="main" style="width:100%;height:1500px;background:url(__PUBLIC__/static/Admin/img/.jpg) no-repeat;">
+                                   
+					         <block name="nav">
+					            <!-- nav -->
+					            <notempty name="_show_nav">
+					            </notempty>
+				            <!-- nav -->
+
+					            </block>
+
+            <block name="body"> </block>
+    </div>
+
+    <!-- /内容区 -->
+    
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="__PUBLIC__/static/nn/js/jquery-2.1.4.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="__PUBLIC__/static/dist/js/bootstrap.min.js"></script>
+    <block name="script"></block>
+</body>
+
+
+</html>

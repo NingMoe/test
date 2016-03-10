@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>用户登录</title>
+<link href="__PUBLIC__/static/nn/css/nn.css" rel="stylesheet">
+<script src="__PUBLIC__/static/nn/js/jquery-2.1.4.js"></script>
+<script src="__PUBLIC__/static/nn/js/nn.js"></script>
+</head>
+<body>
+<div style="margin: 50px;">
+<form method="post" action="{$action}">
+<input type="text"  class="phone" name="phone" value="请输入手机号" onfocus="this.value=''" onblur="if(this.value==''){this.value='请输入手机号'}"><br><br>
+<if condition="$action eq 'register'">
+	<input type="text" name="phoneCode" value="请输入验证码" onfocus="this.value=''" onblur="if(this.value==''){this.value='请输入验证码'}"> | 
+	<input type="button" class="codeajax" value="获取验证码"><br><br>
+</if>
+
+<input type="text" name="password"  value="请输入密码" onfocus="this.value=''" onblur="if(this.value==''){this.value='请输入密码'}"><br><br>
+<input type="submit" value="登录">
+</form>
+<br><br>
+
+<a href="{:U('register')}">忘记（第一次）</a>	| <a href="{:U('login')}">想起来了</a>
+
+</div>
+</body>
+</html>
